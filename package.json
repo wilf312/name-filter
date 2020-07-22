@@ -1,0 +1,12 @@
+{
+  "name": "name-filter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:wilf312/name-filter.git",
+  "author": "OkadaGenya <g.okada.wilf+github@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "node-fetch": "^2.6.0"
+  }
+}
