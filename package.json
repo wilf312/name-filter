@@ -1,6 +1,9 @@
 {
   "name": "name-filter",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node get.js"
+  },
   "main": "index.js",
   "repository": "git@github.com:wilf312/name-filter.git",
   "author": "OkadaGenya <g.okada.wilf+github@gmail.com>",
