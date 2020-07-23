@@ -83,17 +83,17 @@ const getName = (text) => {
 /**
  * 名前のリストを取得する
  */
-const getNameLink = async () => {
+const getNameLink = async (page = 1) => {
 
-  const fetchNameList = async () => {
-    const url = `${host}/${dec}/${gender}/${nameEncode}/?p=1`
+  const fetchNameList = async (page) => {
+    const url = `${host}/${dec}/${gender}/${nameEncode}/?p=${page}`
     return await fetch(url)
       .then(res => {
         return res.text()
       })
   }
   try {
-    const data  = await fetchNameList()
+    const data  = await fetchNameList(page)
     const $ = loadHtml(data)
 
     // 「岡田」姓と相性の良い字画の女の子の名前例
@@ -101,24 +101,15 @@ const getNameLink = async () => {
     let linkList = []
     domList.each(function (i, elem) {
       const a = JSON.parse(JSON.stringify(elem.attribs))
-      // console.log(a.href)
-      
       linkList.push(a.href)
     });
     
-    // console.log(linkList)
     const pageNum = parseInt($('.lastlink').text(), 10)
-    // console.log(pageNum)
 
     return {
       linkList,
-      host,
-      domain,
       pageNum
     }
-
-    // `https://b-name.jp/%E5%A7%93%E5%90%8D%E5%88%A4%E6%96%AD/f/%E5%B2%A1%E7%94%B0__${}?id=3`
-    
   } catch(e) {
     console.log(e)
   }
@@ -143,7 +134,6 @@ const buildNameUrl = (link) => {
 const fetchNameUrl = async (url) => {
   return await fetch(url)
     .then(res => {
-      // console.log(res.json())
       return res.text()
     })
 }
